@@ -23,10 +23,9 @@ if __name__ == '__main__':
         alexa = soupx[1].text
 
     soupz = soup.find_all("p", {"class": "si_tech"})
-    is_wordpress = get(f"https://{url}/wp-admin/").ok
     print(f'''{Fore.YELLOW}
 [-] Alexa Rank : {alexa}
 [-] Front Language : {soupz[3].find("a").text}
 [-] Library Used : {soupz[4].find("a").text}
 [-] Web Server : {head(f"https://{url}").headers.get("server")}
-[*] Wordpress : {Fore.GREEN}{is_wordpress}{Fore.WHITE}''')
+[*] Wordpress : {get(f"https://{url}/wp-admin/").ok}''')
