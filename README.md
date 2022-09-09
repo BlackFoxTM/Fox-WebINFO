@@ -14,14 +14,12 @@ Fox Web Info is a tool that return web server , cms , ......
 
 ## Installation :
 
-`apt-get update , apt-get install git python3`
-
-`git clone https://github.com/BlackFoxTM/Fox-WebINFO/`
-
-`cd Fox-WebINFO`
-
-`pip3 install -r requirements.txt`
-
-`python3 wb_tools.py`
+```
+apt-get update && apt-get install git python3
+git clone https://github.com/BlackFoxTM/Fox-WebINFO/
+cd Fox-WebINFO
+pip3 install -r requirements.txt
+python3 wb_tools.py
+```
 
 ### Support Telegram Channel : [Telegram Channel](https://t.me/BlackFoxSecurityTeam)
