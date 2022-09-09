@@ -6,16 +6,17 @@ from colorama import Fore
 from bs4 import BeautifulSoup
 
 
-def banner():
+if __name__ == '__main__':
+    # Print banner
     figlet = pyfiglet.Figlet(font="script")
-    return figlet.renderText("WEB_INFO FOX")
+    print(Fore.CYAN + figlet.renderText("WEB_INFO FOX"))
+    print(f"{Fore.WHITE}[+] Coded By Maximum Radikali")
+    print(f"{Fore.YELLOW}[+] Channel : @BlackFoxSecurityTeam")
+    url = input(f"{Fore.BLUE}[&] Please Enter URL ex : (google.com) ~> ")
 
-
-#site = "https://w3techs.com/sites/info/000webhost.com"
-
-def checker(site):
+    # Print URL information
     print(Fore.YELLOW)
-    lkas = "https://w3techs.com/sites/info/" + site
+    lkas = "https://w3techs.com/sites/info/" + url
     req = requests.get(lkas).text
     soup = BeautifulSoup(req, "html.parser")
     soupx = soup.find_all("div", class_="si_tech")
@@ -28,19 +29,12 @@ def checker(site):
     soupz = soup.find_all("p", {"class": "si_tech"})
     front_lang = soupz[3].find("a").text
     library_lang = soupz[4].find("a").text
-    websv = requests.head("https://"+site).headers.get("server")
+    websv = requests.head("https://"+url).headers.get("server")
     print("[-] Alexa Rank : %s\n[-] Front Language : %s\n[-] Library Used : %s\n[-] Web Server : %s" %
           (alexa, front_lang, library_lang, websv))
-    wp = site + "/wp-admin/"
+    wp = url + "/wp-admin/"
     status = requests.get("https://"+wp).status_code
     if status != 200:
         print(f"[*] Wordpress : {Fore.RED}No{Fore.WHITE}")
     else:
         print(f"[*] Wordpress : {Fore.GREEN}Yes{Fore.WHITE}")
-
-
-print(Fore.CYAN + banner())
-print(f"{Fore.WHITE}[+] Coded By Maximum Radikali")
-print(f"{Fore.YELLOW}[+] Channel : @BlackFoxSecurityTeam")
-url = input(f"{Fore.BLUE}[&] Please Enter URL ex : (google.com) ~> ")
-checker(url)
