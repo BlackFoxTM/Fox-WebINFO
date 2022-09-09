@@ -18,14 +18,12 @@ if __name__ == '__main__':
     resp = requests.get(f"https://w3techs.com/sites/info/{url}")
     soup = BeautifulSoup(resp.text, "html.parser")
     soupx = soup.find_all("div", class_="si_tech")
+    alexa = soupx[0].text
 
-    # Find alexa rank
     if "Online since" in resp.text and "Description on Homepage" in resp.text:
         alexa = soupx[2].text
     elif "Description on Homepage" in resp.text:
         alexa = soupx[1].text
-    else:
-        alexa = soupx[0].text
 
     # Find front_lang, library_lang, websv and wordpress
     soupz = soup.find_all("p", {"class": "si_tech"})
