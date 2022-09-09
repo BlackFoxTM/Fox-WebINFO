@@ -22,14 +22,11 @@ if __name__ == '__main__':
     elif "Description on Homepage" in resp.text:
         alexa = soupx[1].text
 
-    is_wordpress = f"{Fore.RED}No"
-    if get(f"https://{url}/wp-admin/").ok:
-        is_wordpress = f"{Fore.GREEN}Yes"
-
     soupz = soup.find_all("p", {"class": "si_tech"})
+    is_wordpress = get(f"https://{url}/wp-admin/").ok
     print(f'''{Fore.YELLOW}
 [-] Alexa Rank : {alexa}
 [-] Front Language : {soupz[3].find("a").text}
 [-] Library Used : {soupz[4].find("a").text}
 [-] Web Server : {head(f"https://{url}").headers.get("server")}
-[*] Wordpress : {is_wordpress}{Fore.WHITE}''')
+[*] Wordpress : {Fore.GREEN}{is_wordpress}{Fore.WHITE}''')
